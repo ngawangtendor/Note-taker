@@ -9,15 +9,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Note Taker</h1>
-        <h2>Add A New Note</h2>
-        <p>Name <input type="text" placeholder="write your note here !" ></p>
-        <button>Add Note</button>
-    </div>
-    <div>
-        <h3>Note</h3>
-        <p></p>
-        <button>View Detail</button>
+        <div class="title">
+            <h1>Note Taker</h1>
+            <h2>Add A New Note :</h2>
+        </div>  
+        <div class="form">
+            <form action="" method="get" id="note-container">
+                <label for="note">Note:</label>
+                <textarea id="note" placeholder="Write your note here"></textarea>
+                <input type="submit" name="note" id="submit" value="send">
+            </form>
+        </div>
+        <div class="affiche">
+            <p>No notes added yet</p>
+        </div>
     </div>
 </body>
 </html>
