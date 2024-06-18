@@ -33,7 +33,7 @@ label {
 }
 
 
-textarea {
+#note{
     display: block;
     width: 600px;
     height: 60px;
