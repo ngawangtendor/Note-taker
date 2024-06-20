@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     affiche.style.display = 'flex';
     affiche.style.flexWrap = 'wrap';
  
+    let tableCount = 1;
 
     submit.addEventListener('click', function(event) {
         event.preventDefault();
@@ -37,14 +38,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mettre à jour le texte du paragraphe avec la valeur de l'élément textarea
         const textarea = document.querySelector('#note');
         paragraph.innerHTML = textarea.value;
-        h1.innerHTML = 'Note';
+      
         button.innerHTML = 'afficher';
-        
+  
+        button.addEventListener('click', function() {
+            paragraph.style.height = 'auto';
+            paragraph.style.fontSize = '20px'; // Ajustez la taille de la police pour agrandir le texte
+            paragraph.style.maxHeight = 'none';
+        });
+        // chaque fois que je clique sur le bouton la valeur de h1 augmente de 1
+        h1.innerHTML = 'Note ' + tableCount++; 
+
+
+
         // Ajouter le nouveau tableau à l'élément avec la classe 'affiche'
         affiche.appendChild(table);
        
         // Effacer la valeur de l'élément textarea
         textarea.value = '';
+
 
         affiche.firstElementChild.style.display = 'none';
     });
