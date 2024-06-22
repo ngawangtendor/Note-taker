@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     affiche.style.flexWrap = 'wrap';
  
     let tableCount = 1;
-
+    const textarea = document.querySelector('#note');
+    if (textarea === "") {
+        submit.value = 'afficher';
+    }
     submit.addEventListener('click', function(event) {
         event.preventDefault();
-
+  
         // Créer un nouveau tableau
         const table = document.createElement('table');
         const tr = document.createElement('tr');
@@ -35,17 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
         td.style.display = 'block';
         td.style.wordWrap = 'break-word';
 
+        // Vérifier si le textarea est vide
+        if (textarea.value.trim() === "") {
+            // Si le textarea est vide, ne rien faire
+            return;
+        }
         // Mettre à jour le texte du paragraphe avec la valeur de l'élément textarea
-        const textarea = document.querySelector('#note');
+
         paragraph.innerHTML = textarea.value;
       
         button.innerHTML = 'afficher';
-  
-        button.addEventListener('click', function() {
-            paragraph.style.height = 'auto';
-            paragraph.style.fontSize = '20px'; // Ajustez la taille de la police pour agrandir le texte
-            paragraph.style.maxHeight = 'none';
-        });
+
         // chaque fois que je clique sur le bouton la valeur de h1 augmente de 1
         h1.innerHTML = 'Note ' + tableCount++; 
 
@@ -59,5 +62,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         affiche.firstElementChild.style.display = 'none';
+
+         // Gérer le bouton pour afficher le contenu dans la modale
+        button.addEventListener('click', function() {
+            const modal = document.getElementById("myModal");
+            const modalParagraph = document.getElementById("modal-paragraph");
+            modalParagraph.innerHTML = paragraph.innerHTML;
+            modal.style.display = "block";
+        });
+
+        // Gérer la fermeture de la modale
+        const span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     });
 });
